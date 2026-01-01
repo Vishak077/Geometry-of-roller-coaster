@@ -57,4 +57,15 @@ function calculateSpeed() {
     document.getElementById("speedResult").innerHTML =
         `Speed ≈ ${speed} m/s (using v = √2gh)`;
 }
+function checkAnswer(option) {
+    const result = document.getElementById("quizResult");
+
+    if (option === 2) {
+        result.innerHTML = "✅ Correct! Geometry ensures rider safety.";
+        result.style.color = "green";
+    } else {
+        result.innerHTML = "❌ Try again!";
+        result.style.color = "red";
+    }
+}
 
