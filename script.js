@@ -68,4 +68,70 @@ function checkAnswer(option) {
         result.style.color = "red";
     }
 }
+// Scene
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x000000, 10, 200);
+
+// Camera
+const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+);
+
+// Renderer
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Light
+const light = new THREE.PointLight(0xffffff, 1);
+light.position.set(10, 20, 10);
+scene.add(light);
+
+// Curve (Roller Coaster Path)
+const points = [];
+for (let i = 0; i < 100; i++) {
+    points.push(new THREE.Vector3(
+        i - 50,
+        Math.sin(i * 0.3) * 5,
+        Math.cos(i * 0.3) * 5
+    ));
+}
+
+const curve = new THREE.CatmullRomCurve3(points);
+
+// Track Geometry
+const geometry = new THREE.TubeGeometry(curve, 200, 0.4, 8, false);
+const material = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+const track = new THREE.Mesh(geometry, material);
+scene.add(track);
+
+// Camera Animation
+let t = 0;
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    t += 0.001;
+    if (t > 1) t = 0;
+
+    const position = curve.getPointAt(t);
+    const tangent = curve.getTangentAt(t);
+
+    camera.position.copy(position);
+    camera.lookAt(position.clone().add(tangent));
+
+    renderer.render(scene, camera);
+}
+
+animate();
+
+// Resize
+window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
