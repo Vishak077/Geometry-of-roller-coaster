@@ -12,3 +12,16 @@ canvas {
   border: 1px solid black;
   margin-top: 20px;
 }
+section:hover {
+    transform: scale(1.01);
+    transition: 0.3s;
+}
+
+canvas {
+    display: block;
+    margin: 10px auto;
+}
+
+button {
+    margin: 5px;
+}
