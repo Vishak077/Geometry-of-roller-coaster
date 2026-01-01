@@ -2,25 +2,34 @@
 <html lang="en">
 <head>
   <section>
-    <h2>Calculate Speed at Bottom</h2>
-    <p>Enter height (meters):</p>
-    <input type="number" id="height" placeholder="e.g. 30">
-    <button onclick="calculateSpeed()">Calculate</button>
-    <p id="speedResult"></p>
+    <h2>Interactive Roller Coaster Curve</h2>
+    <canvas id="coasterCanvas" width="500" height="200"></canvas>
+    <p>Watch how smooth curves make rides safe and exciting!</p>
 </section>
-
   <section>
     <h2>Design Your Loop</h2>
     <label>Loop Radius: </label>
     <input type="range" min="30" max="90" value="50" id="radiusSlider">
     <canvas id="loopCanvas" width="200" height="200"></canvas>
 </section>
-
-  <section>
-    <h2>Interactive Roller Coaster Curve</h2>
-    <canvas id="coasterCanvas" width="500" height="200"></canvas>
-    <p>Watch how smooth curves make rides safe and exciting!</p>
+<section>
+    <h2>Calculate Speed at Bottom</h2>
+    <p>Enter height (meters):</p>
+    <input type="number" id="height" placeholder="e.g. 30">
+    <button onclick="calculateSpeed()">Calculate</button>
+    <p id="speedResult"></p>
 </section>
+<section>
+    <h2>Quick Quiz 🎯</h2>
+    <p>Why are clothoid loops used?</p>
+
+    <button onclick="checkAnswer(1)">For decoration</button>
+    <button onclick="checkAnswer(2)">To reduce sudden forces</button>
+    <button onclick="checkAnswer(3)">To increase fear</button>
+
+    <p id="quizResult"></p>
+</section>
+
 
   <meta charset="UTF-8">
   <title>Geometry of Roller Coaster</title>
