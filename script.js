@@ -31,3 +31,22 @@ function drawCurve() {
 }
 
 drawCurve();
+const loopCanvas = document.getElementById("loopCanvas");
+const lctx = loopCanvas.getContext("2d");
+const slider = document.getElementById("radiusSlider");
+
+function drawLoop(radius) {
+    lctx.clearRect(0, 0, 200, 200);
+    lctx.beginPath();
+    lctx.arc(100, 100, radius, 0, Math.PI * 2);
+    lctx.strokeStyle = "red";
+    lctx.lineWidth = 3;
+    lctx.stroke();
+}
+
+slider.addEventListener("input", () => {
+    drawLoop(slider.value);
+});
+
+drawLoop(slider.value);
+
