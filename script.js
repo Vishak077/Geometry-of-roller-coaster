@@ -49,4 +49,12 @@ slider.addEventListener("input", () => {
 });
 
 drawLoop(slider.value);
+function calculateSpeed() {
+    const h = document.getElementById("height").value;
+    const g = 9.8;
+    const speed = Math.sqrt(2 * g * h).toFixed(2);
+
+    document.getElementById("speedResult").innerHTML =
+        `Speed ≈ ${speed} m/s (using v = √2gh)`;
+}
 
